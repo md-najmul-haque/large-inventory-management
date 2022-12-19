@@ -1,6 +1,8 @@
 const express = require('express');
-const cors = require("cors")
+const cors = require("cors");
 const app = express()
+
+const brandRoute = require('./routes/brand.route.js');
 
 
 //middleware
@@ -13,5 +15,7 @@ app.get('/', (req, res) => {
         message: 'server is running'
     })
 })
+
+app.use('api/v1/brand', brandRoute)
 
 module.exports = app;
