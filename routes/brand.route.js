@@ -3,8 +3,8 @@ const { createBrand } = require('../controller/brand.controller.js');
 
 
 
-const router = express.Router()
+const brandRoute = express.Router()
 
-router.route('/').post(createBrand)
+brandRoute.route('/').post(createBrand)
 
-module.exports = router;
+module.exports = brandRoute;

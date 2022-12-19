@@ -4,7 +4,7 @@ const dotenv = require("dotenv").config();
 const app = require("./app");
 
 
-const port = process.env.PROT || 5001;
+const port = process.env.PROT || 5000;
 
 // database connection by mongodb atlas
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ewtsgnj.mongodb.net/?retryWrites=true&w=majority`).then(() => {
