@@ -9,3 +9,8 @@ exports.getStoresService = async () => {
     const stores = await Store.find({})
     return stores
 }
+
+exports.getStoresByIdService = async (id) => {
+    const store = await Store.findOne({ _id: id })
+    return store
+}
