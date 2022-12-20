@@ -15,3 +15,8 @@ exports.getBrandByIdServices = async (id) => {
     return brand
 
 }
+
+exports.updateBrandService = async (id, data) => {
+    const brand = await Brand.updateOne({ _id: id }, data, { runValidators: true })
+    return brand
+}
