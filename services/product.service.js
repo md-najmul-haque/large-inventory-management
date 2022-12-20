@@ -19,3 +19,31 @@ exports.getProductsService = async (filters, queries) => {
 
     return { totalProducts, pageCount, product };
 }
+
+
+exports.updateProductService = async (productId, data) => {
+    // const updateProduct = await Product.updateOne({ _id: productId }, { $set: data }, { runValidators: true })
+
+    // const updateProduct = await Product.updateOne({ _id: productId }, { $inc: data }, { runValidators: true })
+
+    // update product by findById
+    const product = await Product.findById(productId);
+    const updateProduct = await product.set(data).save()
+
+
+    return updateProduct;
+}
+
+exports.bulkUpdateProductService = async (data) => {
+    // const result = await Product.updateMany({ _id: data.ids }, data.data, { runValidators: true })
+
+    const products = [];
+
+    data.ids.forEach(product => {
+        products.push(Product.updateOne({ _id: product.id }, product.data)) // we can't use await inside loop because forEach synchronous function.
+
+    })
+    const result = await Promise.all(products)
+    return result;
+
+}

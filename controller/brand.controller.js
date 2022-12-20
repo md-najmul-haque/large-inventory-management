@@ -87,3 +87,4 @@ exports.updateBrand = async (req, res, next) => {
         })
     }
 }
+
