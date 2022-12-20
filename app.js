@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
     })
 })
 
-app.use('api/v1/brand', brandRoute)
+app.use('/api/v1/brand', brandRoute)
 
 module.exports = app;
