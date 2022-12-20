@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express()
 
 const brandRoute = require('./routes/brand.route.js');
+const storeRoute = require('./routes/store.route.js');
 
 
 //middleware
@@ -17,5 +18,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/brand', brandRoute)
+app.use('/api/v1/store', storeRoute)
 
 module.exports = app;
