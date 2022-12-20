@@ -9,3 +9,9 @@ exports.getBrandsService = async () => {
     const brands = await Brand.find({})
     return brands
 }
+
+exports.getBrandByIdServices = async (id) => {
+    const brand = await Brand.findOne({ _id: id })
+    return brand
+
+}
