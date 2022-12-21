@@ -1,4 +1,4 @@
-const { createProductService, getProductsService, updateProductService, bulkUpdateProductService } = require("../services/product.service")
+const { createProductService, getProductsService, updateProductService, bulkUpdateProductService, deleteProductByIdService, bulkDeleteProductService } = require("../services/product.service")
 
 
 exports.createProduct = async (req, res, next) => {
@@ -185,3 +185,51 @@ exports.bulkUpdateProduct = async (req, res, next) => {
         })
     }
 }
+
+
+exports.deleteProductById = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const result = await deleteProductByIdService(id)
+        if (!result.deletedCount) {
+            res.status(400).json({
+                status: 'fail',
+                message: 'Fail to delete data',
+            })
+        } else {
+            res.status(200).json({
+                status: 'success',
+                message: 'Data deleted successfully',
+                data: result
+            })
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: 'Fail to delete data',
+            error: error.message
+        })
+    }
+}
+// to get any things we use query 
+// to delete and update we use body
+
+exports.bulkDeleteProduct = async (req, res, next) => {
+    try {
+        const result = await bulkDeleteProductService(req.body.ids)
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Data deleted successfully',
+            data: result
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: 'Fail to delete data',
+            error: error.message
+        })
+    }
+}
+
